@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\User;
-use App\Student;
+use App\Students;
 use App\Event;
 use App\Duty;
 use App\Studentlist;
 
 
-class StudentlistController extends Controller
+class StudentsController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -29,9 +29,15 @@ class StudentlistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function studentlist(Request $request)
+    public function students(Request $request)
     {
-       
-        return redirect()->route('home')
+        $this->validateStudents($request);
+
+        $students = new \App\Students;
+        $students->students = $request->students;
+        $students->user_id = Auth::user()->id;
+        $students->save();
+        
+         return redirect()->route('home');
     }
 }

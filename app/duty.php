@@ -4,7 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class duty extends Model
+class Duty extends Model
 {
     //
+    protected $fillable = [
+        'id',
+        'user_id',
+        'date',
+        'day',
+        'hour'
+    
+    ];
+
 }
